@@ -1,0 +1,215 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dot-google-direct",
+        "type": "tls",
+        "server": "8.8.8.8"
+      },
+      {
+        "tag": "dot-yandex-direct",
+        "type": "tls",
+        "server": "77.88.8.8"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": [
+          "domain-ru",
+          "geosite-ru",
+          "geosite-ru-inside"
+        ],
+        "action": "route",
+        "server": "dot-yandex-direct"
+      }
+    ],
+    "final": "dot-google-direct",
+    "strategy": "ipv4_only",
+    "reverse_mapping": true
+  },
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "address": ["10.10.10.1/30"],
+      "mtu": 9000,
+      "auto_route": true,
+      "auto_redirect": true,
+      "strict_route": true,
+      "route_exclude_address": ["SERVER_IP/32"]
+    },
+    {
+      "tag": "proxy-in",
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 1080
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "vless-reality-vision-out",
+      "type": "vless",
+      "server": "SERVER_IP",
+      "server_port": 443,
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "min_version": "1.2",
+        "alpn": ["h2", "http/1.1"],
+        "reality": {
+          "enabled": true,
+          "public_key": "REALITY_PUBLIC_KEY",
+          "short_id": "REALITY_SHORT_ID"
+        },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "edge"
+        }
+      },
+      "multiplex": {
+        "enabled": true,
+        "padding": true,
+        "max_connections": 4
+      },
+      "uuid": "VLESS_USER_UUID",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp"
+    },
+    {
+      "tag": "hysteria2-salamander-out",
+      "type": "hysteria2",
+      "server": "SERVER_IP",
+      "server_ports": ["40000:50000"],
+      "up_mbps": 100,
+      "down_mbps": 100,
+      "obfs": {
+        "type": "salamander",
+        "password": "SALAMANDER_OBFS_PASSWORD"
+      },
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "min_version": "1.3",
+        "alpn": ["h3"],
+        "certificate_public_key_sha256": ["HYSTERIA2_CERT_HASH"]
+      },
+      "password": "HYSTERIA2_USER_PASSWORD"
+    },
+    {
+      "tag": "tunnel-auto",
+      "type": "urltest",
+      "outbounds": [
+        "vless-reality-vision-out",
+        "hysteria2-salamander-out"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "15s",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    }
+  ],
+  "route": {
+    "final": "tunnel-auto",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dot-google-direct",
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": ["geosite-habr"],
+        "action": "route",
+        "outbound": "tunnel-auto"
+      },
+      {
+        "rule_set": ["geoip-ru"],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "domain-ru",
+          "geosite-ru",
+          "geosite-ru-inside"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": ["geosite-reddit"],
+        "action": "route",
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "domain-ru",
+        "rules": [
+          {
+            "domain_suffix": [
+              ".ru",
+              ".рф",
+              ".su"
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "geoip-ru",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geoip/geoip-ru.srs",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "geosite-ru",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-category-ru.srs",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "geosite-ru-inside",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-ru-available-only-inside.srs",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "geosite-habr",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-habr.srs",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "geosite-reddit",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-reddit.srs",
+        "update_interval": "1d"
+      }
+    ]
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}

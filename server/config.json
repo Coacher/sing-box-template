@@ -1,0 +1,90 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dot-google",
+        "type": "tls",
+        "server": "8.8.8.8"
+      }
+    ],
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "tag": "vless-reality-vision-in",
+      "type": "vless",
+      "listen": "0.0.0.0",
+      "listen_port": 443,
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "min_version": "1.2",
+        "alpn": ["h2", "http/1.1"],
+        "reality": {
+          "enabled": true,
+          "handshake": {
+            "server": "www.microsoft.com",
+            "server_port": 443
+          },
+          "private_key": "REALITY_PRIVATE_KEY",
+          "short_id": ["REALITY_SHORT_ID"]
+        }
+      },
+      "multiplex": {
+        "enabled": true,
+        "padding": true
+      },
+      "users": [
+        {
+          "name": "vless-client",
+          "uuid": "VLESS_USER_UUID",
+          "flow": "xtls-rprx-vision"
+        }
+      ]
+    },
+    {
+      "tag": "hysteria2-salamander-in",
+      "type": "hysteria2",
+      "listen": "0.0.0.0",
+      "listen_port": 443,
+      "up_mbps": 100,
+      "down_mbps": 100,
+      "obfs": {
+        "type": "salamander",
+        "password": "SALAMANDER_OBFS_PASSWORD"
+      },
+      "tls": {
+        "enabled": true,
+        "min_version": "1.3",
+        "alpn": ["h3"],
+        "certificate_path": "/etc/sing-box/hysteria2/server.crt",
+        "key_path": "/etc/sing-box/hysteria2/server.key"
+      },
+      "users": [
+        {
+          "name": "hysteria2-client",
+          "password": "HYSTERIA2_USER_PASSWORD"
+        }
+      ]
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "direct",
+      "type": "direct"
+    }
+  ],
+  "route": {
+    "final": "direct",
+    "rules": [
+      {
+        "ip_is_private": true,
+        "action": "reject"
+      }
+    ]
+  }
+}
