@@ -8,12 +8,20 @@
       {
         "tag": "dot-google-direct",
         "type": "tls",
-        "server": "8.8.8.8"
+        "server": "8.8.8.8",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.google"
+        }
       },
       {
         "tag": "dot-yandex-direct",
         "type": "tls",
-        "server": "77.88.8.8"
+        "server": "77.88.8.8",
+        "tls": {
+          "enabled": true,
+          "server_name": "common.dot.dns.yandex.net"
+        }
       }
     ],
     "rules": [
