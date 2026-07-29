@@ -86,6 +86,9 @@
     "final": "direct",
     "rules": [
       {
+        "action": "resolve"
+      },
+      {
         "ip_is_private": true,
         "action": "reject"
       }
