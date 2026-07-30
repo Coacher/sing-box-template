@@ -124,7 +124,7 @@
       "tag": "hysteria2-salamander-out",
       "type": "hysteria2",
       "server": "SERVER_IP",
-      "server_ports": ["40000:50000"],
+      "server_ports": ["20000:30000"],
       "up_mbps": 100,
       "down_mbps": 100,
       "obfs": {
