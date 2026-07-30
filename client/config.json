@@ -26,6 +26,11 @@
     ],
     "rules": [
       {
+        "domain": ["use-application-dns.net"],
+        "action": "predefined",
+        "rcode": "NXDOMAIN"
+      },
+      {
         "rule_set": [
           "domain-ru",
           "geosite-ru",
