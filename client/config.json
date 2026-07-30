@@ -54,12 +54,6 @@
       "auto_redirect": true,
       "strict_route": true,
       "route_exclude_address": ["SERVER_IP/32"]
-    },
-    {
-      "tag": "proxy-in",
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 1080
     }
   ],
   "outbounds": [
