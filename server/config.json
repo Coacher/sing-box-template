@@ -19,7 +19,7 @@
   },
   "inbounds": [
     {
-      "tag": "vless-reality-vision-in",
+      "tag": "vless-reality-in",
       "type": "vless",
       "listen": "0.0.0.0",
       "listen_port": 443,
@@ -44,9 +44,14 @@
       },
       "users": [
         {
-          "name": "vless-client",
-          "uuid": "VLESS_USER_UUID",
+          "name": "vless-client-vision",
+          "uuid": "VLESS_USER_UUID_1",
           "flow": "xtls-rprx-vision"
+        },
+        {
+          "name": "vless-client-mux",
+          "uuid": "VLESS_USER_UUID_2",
+          "flow": ""
         }
       ]
     },
