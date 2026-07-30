@@ -79,13 +79,41 @@
         }
       },
       "multiplex": {
+        "enabled": false,
+        "padding": false
+      },
+      "uuid": "VLESS_USER_UUID_1",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp"
+    },
+    {
+      "tag": "vless-reality-mux-out",
+      "type": "vless",
+      "server": "SERVER_IP",
+      "server_port": 443,
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "min_version": "1.2",
+        "alpn": ["h2", "http/1.1"],
+        "reality": {
+          "enabled": true,
+          "public_key": "REALITY_PUBLIC_KEY",
+          "short_id": "REALITY_SHORT_ID"
+        },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "edge"
+        }
+      },
+      "multiplex": {
         "enabled": true,
         "padding": true,
         "max_connections": 4
       },
-      "uuid": "VLESS_USER_UUID",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp"
+      "uuid": "VLESS_USER_UUID_2",
+      "flow": "",
+      "packet_encoding": ""
     },
     {
       "tag": "hysteria2-salamander-out",
@@ -112,6 +140,7 @@
       "type": "urltest",
       "outbounds": [
         "vless-reality-vision-out",
+        "vless-reality-mux-out",
         "hysteria2-salamander-out"
       ],
       "url": "https://www.gstatic.com/generate_204",
