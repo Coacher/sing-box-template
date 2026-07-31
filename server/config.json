@@ -35,7 +35,8 @@
             "server_port": 443
           },
           "private_key": "REALITY_PRIVATE_KEY",
-          "short_id": ["REALITY_SHORT_ID"]
+          "short_id": ["REALITY_SHORT_ID"],
+          "max_time_difference": "1m"
         }
       },
       "multiplex": {
