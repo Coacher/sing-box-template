@@ -22,6 +22,16 @@
           "enabled": true,
           "server_name": "common.dot.dns.yandex.net"
         }
+      },
+      {
+        "tag": "dot-google-tunnel",
+        "type": "tls",
+        "server": "8.8.8.8",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.google"
+        },
+        "detour": "tunnel-auto"
       }
     ],
     "rules": [
@@ -29,6 +39,16 @@
         "domain": ["use-application-dns.net"],
         "action": "predefined",
         "rcode": "NXDOMAIN"
+      },
+      {
+        "rule_set": ["geosite-reddit"],
+        "action": "route",
+        "server": "dot-google-direct"
+      },
+      {
+        "rule_set": ["geosite-habr"],
+        "action": "route",
+        "server": "dot-google-tunnel"
       },
       {
         "rule_set": [
@@ -40,7 +60,7 @@
         "server": "dot-yandex-direct"
       }
     ],
-    "final": "dot-google-direct",
+    "final": "dot-google-tunnel",
     "strategy": "ipv4_only",
     "reverse_mapping": true
   },
@@ -171,7 +191,7 @@
   "route": {
     "final": "tunnel-auto",
     "auto_detect_interface": true,
-    "default_domain_resolver": "dot-google-direct",
+    "default_domain_resolver": "dot-google-tunnel",
     "rules": [
       {
         "action": "sniff"
@@ -182,6 +202,11 @@
       },
       {
         "ip_is_private": true,
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": ["geosite-reddit"],
         "action": "route",
         "outbound": "direct"
       },
@@ -201,11 +226,6 @@
           "geosite-ru",
           "geosite-ru-inside"
         ],
-        "action": "route",
-        "outbound": "direct"
-      },
-      {
-        "rule_set": ["geosite-reddit"],
         "action": "route",
         "outbound": "direct"
       }
