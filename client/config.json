@@ -85,7 +85,6 @@
         "enabled": true,
         "server_name": "www.microsoft.com",
         "min_version": "1.2",
-        "alpn": ["h2", "http/1.1"],
         "reality": {
           "enabled": true,
           "public_key": "REALITY_PUBLIC_KEY",
@@ -112,7 +111,6 @@
         "enabled": true,
         "server_name": "www.microsoft.com",
         "min_version": "1.2",
-        "alpn": ["h2", "http/1.1"],
         "reality": {
           "enabled": true,
           "public_key": "REALITY_PUBLIC_KEY",
@@ -146,7 +144,6 @@
         "enabled": true,
         "server_name": "www.microsoft.com",
         "min_version": "1.3",
-        "alpn": ["h3"],
         "certificate_public_key_sha256": ["HYSTERIA2_CERT_HASH"]
       },
       "password": "HYSTERIA2_USER_PASSWORD"
@@ -164,7 +161,6 @@
         "enabled": true,
         "server_name": "www.microsoft.com",
         "min_version": "1.3",
-        "alpn": ["h3"],
         "certificate_public_key_sha256": ["HYSTERIA2_CERT_HASH"]
       },
       "password": "HYSTERIA2_USER_PASSWORD"
