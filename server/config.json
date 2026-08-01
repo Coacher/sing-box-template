@@ -61,8 +61,8 @@
       "type": "hysteria2",
       "listen": "0.0.0.0",
       "listen_port": 443,
-      "up_mbps": 100,
-      "down_mbps": 100,
+      "up_mbps": 1000,
+      "down_mbps": 1000,
       "obfs": {
         "type": "salamander",
         "password": "SALAMANDER_OBFS_PASSWORD"
