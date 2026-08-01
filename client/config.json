@@ -246,41 +246,31 @@
       {
         "tag": "geoip-ru",
         "type": "remote",
-        "format": "binary",
         "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geoip/geoip-ru.srs",
-        "update_interval": "1d",
         "download_detour": "tunnel-auto"
       },
       {
         "tag": "geosite-ru",
         "type": "remote",
-        "format": "binary",
         "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-category-ru.srs",
-        "update_interval": "1d",
         "download_detour": "tunnel-auto"
       },
       {
         "tag": "geosite-ru-inside",
         "type": "remote",
-        "format": "binary",
         "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-ru-available-only-inside.srs",
-        "update_interval": "1d",
         "download_detour": "tunnel-auto"
       },
       {
         "tag": "geosite-habr",
         "type": "remote",
-        "format": "binary",
         "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-habr.srs",
-        "update_interval": "1d",
         "download_detour": "tunnel-auto"
       },
       {
         "tag": "geosite-reddit",
         "type": "remote",
-        "format": "binary",
         "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geosite/geosite-reddit.srs",
-        "update_interval": "1d",
         "download_detour": "tunnel-auto"
       }
     ]
