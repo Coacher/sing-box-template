@@ -57,7 +57,7 @@
   ],
   "outbounds": [
     {
-      "tag": "vless-reality-vision-out",
+      "tag": "vless-vision-out",
       "type": "vless",
       "server": "SERVER_IP",
       "server_port": 443,
@@ -84,7 +84,7 @@
       "flow": "xtls-rprx-vision"
     },
     {
-      "tag": "vless-reality-mux-out",
+      "tag": "vless-mux-out",
       "type": "vless",
       "server": "SERVER_IP",
       "server_port": 443,
@@ -112,7 +112,7 @@
       "flow": ""
     },
     {
-      "tag": "hysteria2-salamander-out",
+      "tag": "hysteria2-brutal-out",
       "type": "hysteria2",
       "server": "SERVER_IP",
       "server_ports": ["20000:30000"],
@@ -132,12 +132,31 @@
       "password": "HYSTERIA2_USER_PASSWORD"
     },
     {
+      "tag": "hysteria2-bbr-out",
+      "type": "hysteria2",
+      "server": "SERVER_IP",
+      "server_port": 443,
+      "obfs": {
+        "type": "salamander",
+        "password": "SALAMANDER_OBFS_PASSWORD"
+      },
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "min_version": "1.3",
+        "alpn": ["h3"],
+        "certificate_public_key_sha256": ["HYSTERIA2_CERT_HASH"]
+      },
+      "password": "HYSTERIA2_USER_PASSWORD"
+    },
+    {
       "tag": "tunnel-auto",
       "type": "urltest",
       "outbounds": [
-        "vless-reality-vision-out",
-        "vless-reality-mux-out",
-        "hysteria2-salamander-out"
+        "vless-vision-out",
+        "vless-mux-out",
+        "hysteria2-brutal-out",
+        "hysteria2-bbr-out"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
