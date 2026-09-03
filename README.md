@@ -1,3 +1,5 @@
+Requires sing-box 1.14.0 or later.
+
 Create sing-box server and client configs with:
 
 ```bash
