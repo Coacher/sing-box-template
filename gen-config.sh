@@ -10,7 +10,6 @@ REALITY_PUBLIC_KEY="$(echo "${_REALITY_KEYS}" | awk '/PublicKey:/ {print $2}')"
 VLESS_USER_UUID_1="$(sing-box generate uuid)"
 VLESS_USER_UUID_2="$(sing-box generate uuid)"
 
-GECKO_OBFS_PASSWORD="$(sing-box generate rand 24 --base64)"
 SALAMANDER_OBFS_PASSWORD="$(sing-box generate rand 24 --base64)"
 
 HYSTERIA2_USER_PASSWORD="$(sing-box generate rand 32 --base64)"
@@ -25,7 +24,6 @@ sed -i \
     -e "s|REALITY_SHORT_ID|${REALITY_SHORT_ID}|g" \
     -e "s|VLESS_USER_UUID_1|${VLESS_USER_UUID_1}|g" \
     -e "s|VLESS_USER_UUID_2|${VLESS_USER_UUID_2}|g" \
-    -e "s|GECKO_OBFS_PASSWORD|${GECKO_OBFS_PASSWORD}|g" \
     -e "s|SALAMANDER_OBFS_PASSWORD|${SALAMANDER_OBFS_PASSWORD}|g" \
     -e "s|HYSTERIA2_USER_PASSWORD|${HYSTERIA2_USER_PASSWORD}|g" \
     -e "s|HYSTERIA2_CERT_HASH|${HYSTERIA2_CERT_HASH}|g" \
@@ -36,7 +34,6 @@ sed -i \
     -e "s|REALITY_SHORT_ID|${REALITY_SHORT_ID}|g" \
     -e "s|VLESS_USER_UUID_1|${VLESS_USER_UUID_1}|g" \
     -e "s|VLESS_USER_UUID_2|${VLESS_USER_UUID_2}|g" \
-    -e "s|GECKO_OBFS_PASSWORD|${GECKO_OBFS_PASSWORD}|g" \
     -e "s|SALAMANDER_OBFS_PASSWORD|${SALAMANDER_OBFS_PASSWORD}|g" \
     -e "s|HYSTERIA2_USER_PASSWORD|${HYSTERIA2_USER_PASSWORD}|g" \
     server/config.json

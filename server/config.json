@@ -79,30 +79,6 @@
           "password": "HYSTERIA2_USER_PASSWORD"
         }
       ]
-    },
-    {
-      "tag": "hysteria2-gecko-in",
-      "type": "hysteria2",
-      "listen": "0.0.0.0",
-      "listen_port": 8443,
-      "down_mbps": 1000,
-      "up_mbps": 1000,
-      "obfs": {
-        "type": "gecko",
-        "password": "GECKO_OBFS_PASSWORD"
-      },
-      "tls": {
-        "enabled": true,
-        "min_version": "1.3",
-        "certificate_path": "/etc/sing-box/hysteria2/server.crt",
-        "key_path": "/etc/sing-box/hysteria2/server.key"
-      },
-      "users": [
-        {
-          "name": "hysteria2-client",
-          "password": "HYSTERIA2_USER_PASSWORD"
-        }
-      ]
     }
   ],
   "outbounds": [

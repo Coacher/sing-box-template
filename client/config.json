@@ -137,10 +137,10 @@
       "flow": ""
     },
     {
-      "tag": "hy2-salamander-brutal-out",
+      "tag": "hysteria2-brutal-out",
       "type": "hysteria2",
       "server": "SERVER_IP",
-      "server_ports": ["40000:44999"],
+      "server_ports": ["20000:30000"],
       "hop_interval": "30s",
       "hop_interval_max": "60s",
       "down_mbps": 100,
@@ -158,7 +158,7 @@
       "password": "HYSTERIA2_USER_PASSWORD"
     },
     {
-      "tag": "hy2-salamander-bbr-out",
+      "tag": "hysteria2-bbr-out",
       "type": "hysteria2",
       "server": "SERVER_IP",
       "server_port": 443,
@@ -175,53 +175,13 @@
       "password": "HYSTERIA2_USER_PASSWORD"
     },
     {
-      "tag": "hy2-gecko-brutal-out",
-      "type": "hysteria2",
-      "server": "SERVER_IP",
-      "server_ports": ["45000:49999"],
-      "hop_interval": "30s",
-      "hop_interval_max": "60s",
-      "down_mbps": 100,
-      "up_mbps": 100,
-      "obfs": {
-        "type": "gecko",
-        "password": "GECKO_OBFS_PASSWORD"
-      },
-      "tls": {
-        "enabled": true,
-        "server_name": "cloud.google.com",
-        "min_version": "1.3",
-        "certificate_public_key_sha256": ["HYSTERIA2_CERT_HASH"]
-      },
-      "password": "HYSTERIA2_USER_PASSWORD"
-    },
-    {
-      "tag": "hy2-gecko-bbr-out",
-      "type": "hysteria2",
-      "server": "SERVER_IP",
-      "server_port": 8443,
-      "obfs": {
-        "type": "gecko",
-        "password": "GECKO_OBFS_PASSWORD"
-      },
-      "tls": {
-        "enabled": true,
-        "server_name": "cloud.google.com",
-        "min_version": "1.3",
-        "certificate_public_key_sha256": ["HYSTERIA2_CERT_HASH"]
-      },
-      "password": "HYSTERIA2_USER_PASSWORD"
-    },
-    {
       "tag": "tunnel-auto",
       "type": "urltest",
       "outbounds": [
         "vless-vision-out",
         "vless-mux-out",
-        "hy2-salamander-brutal-out",
-        "hy2-salamander-bbr-out",
-        "hy2-gecko-brutal-out",
-        "hy2-gecko-bbr-out"
+        "hysteria2-brutal-out",
+        "hysteria2-bbr-out"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
