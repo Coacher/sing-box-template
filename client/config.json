@@ -221,7 +221,10 @@
         "outbound": "tunnel-auto"
       },
       {
-        "rule_set": ["geoip-ru"],
+        "rule_set": [
+          "geoip-ru",
+          "geoip-yandex"
+        ],
         "action": "route",
         "outbound": "direct"
       },
@@ -253,6 +256,11 @@
         "tag": "geoip-ru",
         "type": "remote",
         "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geoip/geoip-ru.srs"
+      },
+      {
+        "tag": "geoip-yandex",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/runetfreedom/russia-v2ray-rules-dat/release/sing-box/rule-set-geoip/geoip-yandex.srs"
       },
       {
         "tag": "geosite-ru",
